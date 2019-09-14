@@ -1,5 +1,7 @@
 # SortingVisualizerClone
 
+see it live here: [https://sorting-visualizer.stackblitz.io/](https://sorting-visualizer.stackblitz.io/)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.2.
 
 ## Development server
