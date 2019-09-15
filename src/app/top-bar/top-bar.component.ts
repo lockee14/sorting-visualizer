@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BehaviorSubject, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 import { AlgoService } from '../algo.service';
 
@@ -12,7 +11,7 @@ import { AlgoService } from '../algo.service';
 })
 export class TopBarComponent implements OnInit {
   arrayLength = new BehaviorSubject<number>(4);
-  arrayLength$ = this.arrayLength.asObservable().pipe(tap((x) => console.log('arrayLength: ', this.arrayLength)));
+  arrayLength$ = this.arrayLength.asObservable();
 
   selectedAlgo: string;
   sorting$: Observable<boolean>;

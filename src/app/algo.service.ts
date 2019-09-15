@@ -337,17 +337,17 @@ export class AlgoService {
         lastLeft = left;
         lastRight = right;
         toChange.push(
-          {index: start, value: array[start].value, color: 'lime', part: `350 siftDown`},
-          {index: left, value: array[left].value, color: 'lime', part: `351 siftDown`},
-          {index: right, value: array[right].value, color: 'lime', part: `352 siftDown`}
+          {index: start, value: array[start].value, color: 'lime'},
+          {index: left, value: array[left].value, color: 'lime'},
+          {index: right, value: array[right].value, color: 'lime'}
         );
         swap = arr[left].value > arr[right].value ? left : right;
       } else {
         lastLeft = left;
         lastRight = null;
         toChange.push(
-          {index: start, value: array[start].value, color: 'lime', part: `360 siftDown`},
-          {index: left, value: array[left].value, color: 'lime', part: `361 siftDown`},
+          {index: start, value: array[start].value, color: 'lime'},
+          {index: left, value: array[left].value, color: 'lime'},
         );
         swap = left;
       }
@@ -358,16 +358,16 @@ export class AlgoService {
       if (arr[start].value < arr[swap].value) {
         change.push(
           [
-            {index: start, value: array[start].value, color: 'crimson', part: `369 siftDown`},
-            {index: swap, value: array[swap].value, color: 'crimson', part: `370 siftDown`}
+            {index: start, value: array[start].value, color: 'crimson'},
+            {index: swap, value: array[swap].value, color: 'crimson'}
           ],
           [
-            {index: start, value: array[swap].value, color: 'crimson', part: `373 siftDown`},
-            {index: swap, value: array[start].value, color: 'crimson', part: `374 siftDown`}
+            {index: start, value: array[swap].value, color: 'crimson'},
+            {index: swap, value: array[start].value, color: 'crimson'}
           ],
           [
-            {index: start, value: array[swap].value, color: 'lime', part: `377 siftDown`},
-            {index: swap, value: array[start].value, color: 'lime', part: `378 siftDown`}
+            {index: start, value: array[swap].value, color: 'lime'},
+            {index: swap, value: array[start].value, color: 'lime'}
           ],
         );
         const temp = arr[swap];
@@ -437,17 +437,10 @@ export class AlgoService {
       return;
     }
     const subChange = change.shift();
-    if (subChange[0].merge) {
-      subChange[0].payload.forEach(el => {
-        arr[el.idx].value = el.value;
-        arr[el.idx].color = el.color;
-      });
-    } else {
-      subChange.forEach(el => {
-        arr[el.index].value = el.value;
-        arr[el.index].color = el.color;
-      });
-    }
+    subChange.forEach(el => {
+      arr[el.index].value = el.value;
+      arr[el.index].color = el.color;
+    });
     setTimeout(() => this.showChange(change), 4000 / this.arrayNumber); // set speed as function of array length
   }
 
