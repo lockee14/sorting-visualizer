@@ -30,12 +30,12 @@ export class AlgoService {
   mergeSort() {
     this.sorting.next(true);
     const arr = JSON.parse(JSON.stringify(this.array.getValue())).map((x, i) => {
-      x.idx = i;
+      x.index = i;
       return x;
     });
     const change = [];
     mergeSortHelper(arr, 0, arr.length);
-    this.mergeChange(change);
+    this.showChange(change);
 
     function mergeSortHelper(array,  start, end) {
       if (array.length === 1) {
@@ -58,9 +58,9 @@ export class AlgoService {
 
     function actualSort(first, second, isFinalMerge) {
       const sortedArray = [];
-      let smallIdx = first[0].idx;
+      let smallIdx = first[0].index;
       first.map(x => {
-        smallIdx = x.idx < smallIdx ? x.idx : smallIdx;
+        smallIdx = x.index < smallIdx ? x.index : smallIdx;
       });
       first[0].color = 'lime';
       second[0].color = 'lime';
@@ -113,29 +113,12 @@ export class AlgoService {
     function sortIndex(index, sortedArray, first, second) {
       const tempArray = JSON.parse(JSON.stringify(sortedArray.concat(first).concat(second))); // avoid shallow copy
       tempArray.map(x => {
-        x.idx = index;
+        x.index = index;
         index++;
         return x;
       });
       return tempArray;
     }
-  }
-
-  mergeChange(change) {
-    const arr = this.array.getValue();
-    if (!change.length) {
-      arr.forEach(el => {
-        el.color = 'rebeccapurple';
-      });
-      this.sorting.next(false);
-      return;
-    }
-    const subChange = change.shift();
-    subChange.forEach(el => {
-      arr[el.idx].value = el.value;
-      arr[el.idx].color = el.color;
-    });
-    setTimeout(() => this.mergeChange(change), 4000 / this.arrayNumber);
   }
 
   quickSort() {
